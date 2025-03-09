@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 import React, { ComponentType, useEffect } from 'react';
@@ -19,7 +20,7 @@ const withAuth = (WrappedComponent: ComponentType) => {
     }, [user, loading, router]);
 
     if (loading || !user) {
-      return <div>Loading...</div>;
+      return ;
     }
 
     return <WrappedComponent {...props} />;
