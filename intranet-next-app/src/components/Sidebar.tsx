@@ -20,7 +20,7 @@ export default function Sidebar() {
       <nav style={styles.nav}>
         <Link href="/dashboard/home" style={styles.navItem}>❤️ Home</Link>
         <Link href="/dashboard/mycca" style={{ ...styles.navItem }}>📋 My CCAs</Link>
-        <Link href="/dashboard/rank" style={styles.navItem}>📊 Rank CCA</Link>
+        {/* <Link  href="/dashboard/rank" style={styles.navItem}>📊 Rank CCA</Link> */}
       </nav>
     </div>
   );

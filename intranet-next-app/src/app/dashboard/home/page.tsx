@@ -113,7 +113,7 @@ export default function Dashboard() {
                             </p>
                         </div>
                         <div className="button-group">
-                            <button disabled className="activity-button">
+                            <button disabled className="activity-button-disabled">
                                 Rank CCA
                             </button>
                             <p className="button-description">

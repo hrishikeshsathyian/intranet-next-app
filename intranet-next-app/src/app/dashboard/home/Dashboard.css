@@ -179,6 +179,18 @@
     transition: all 0.3s ease;
 }
 
+.activity-button-disabled {
+    background: grey;
+    color: white;
+    padding: 10px 50px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
 .activity-button:hover {
     background: #ff6f00;
 }
