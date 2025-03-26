@@ -9,7 +9,7 @@ export default function MyCCA() {
   const { user } = useAuth();
   const [points, setPoints] = useState<number>(0);
   const [ccas, setCCAs] = useState<{ name: string; role: string; points: number }[]>([]);
-
+  const [residentDuration, setResidentDuration] = useState<string>("");
   useEffect(() => {
     if (!user?.email) return;
 
@@ -48,6 +48,26 @@ export default function MyCCA() {
       
   }, [user?.email]);
 
+  useEffect(() => {
+    if (!user?.email) return;
+
+    fetch(`/api/user/getDuration/${user.email}`)
+      .then(async (res) => {
+        if (!res.ok) {
+          const errorData = await res.json();
+          throw new Error(errorData.error || "Failed to fetch user resident duration");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setResidentDuration(data.residentDuration);
+      })
+      .catch((error) => {
+        console.error("Error fetching duration:", error.message);
+        toast.error(error.message); // Show a toast notification for the error
+      });
+  })
+
   return (
     <div style={styles.container}>
       <Sidebar /> 
@@ -74,7 +94,9 @@ export default function MyCCA() {
           </tbody>
         </table>
         <div style={styles.footer}>
-          <strong>Total Points: </strong> {points ? points : 0}
+          <strong>Total Points: {points ? points : 0} </strong>
+          <br />
+            <p> You are considered a <strong>{residentDuration}</strong> Shearite </p>
         </div>
       </div>
     </div>
@@ -129,7 +151,6 @@ const styles = {
     marginTop: '20px',
     textAlign: 'right' as const,
     fontSize: '16px',
-    fontWeight: 'bold',
     color: '#000000'
   }
 };

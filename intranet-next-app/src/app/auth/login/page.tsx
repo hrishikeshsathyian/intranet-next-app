@@ -8,12 +8,19 @@ import Image from "next/image";
 import { StyleSheet, css } from "aphrodite";
 import toast from "react-hot-toast";
 import { useRouter } from 'next/navigation';
+import { useEffect } from "react";
 
 
 
 export default function Home() {
   const router = useRouter();
   const { user, loading } = useAuth();
+  
+  useEffect(() => {
+    if (user) {
+      router.push("/dashboard/home");
+    }
+  }, [router, user]);
   
   const handleSignIn = async () => {
     signInWithPopup(auth, provider)
